@@ -1,8 +1,7 @@
 from Fenster import * 
-from Datei import *
 
 
-hauptfenster = Fenster()
-Datei.Create(Datei.GetDesktopPfad(), hauptfenster.eintragsfeldText)
+hauptfenster = Fenster.Create()
 
-hauptfenster.mainloop()
+
+Fenster.Run(hauptfenster)
