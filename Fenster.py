@@ -1,10 +1,12 @@
 import tkinter as tk
 
 
-class Fenster:
-    # Fenstermodalitäten
-    
-    def Create(
+class Fenster(tk.Tk):
+    self.eintragsfeldText = None
+    # Fenstermodalitäten    
+    def super.__init__(
+        self,
+        eintragsfeldText = None 
         fensterBreite = 450,
         fensterHoehe = 450,
         fensterHintergrundFarbe = "#FFC7EF",
@@ -18,16 +20,16 @@ class Fenster:
         eintragsfeldHintergrundFarbe = "#CB0790"):
         
         # Fenstererstellung(init)
-        fenster = tk.Tk()
-        fenster.geometry(f"{fensterBreite}x{fensterHoehe}")
-        fenster.title(fensterTitel)
-        fenster.configure(background=fensterHintergrundFarbe)
-        fenster.resizable(False, False)
+        self.eintragsfeldText = eintragsfeldText
+        self.geometry(f"{fensterBreite}x{fensterHoehe}")
+        self.title(fensterTitel)
+        self.configure(background=fensterHintergrundFarbe)
+        self.resizable(False, False)
 
         # FensterInhalt(widgets)
         #knopf
         
-        knopf = tk.Button(fenster)
+        knopf = tk.Button(self)
         knopf.configure(background=knopfFarbe, text="Touch Me", foreground=schriftFarben)
         
         knopf.place(width=knopfBreite,
@@ -37,7 +39,9 @@ class Fenster:
                     anchor="center")
         
         #eintragsfeld
-        eintragsfeld = tk.Entry(fenster)
+        
+        self.eintragsfeldText = tk.StringVar(self, "Beispiel.txt")
+        eintragsfeld = tk.Entry(self, textvariable= self.eintragsfeldText)
         eintragsfeld.configure(
                     background=eintragsfeldHintergrundFarbe,
                     foreground=schriftFarben)
@@ -47,8 +51,8 @@ class Fenster:
                     x=fensterBreite/2,
                     y=fensterHoehe/2-60, 
                     anchor="center")
-        
-        return fenster
     
-    def Run(fenster): 
-         fenster.mainloop()
+        
+        return self
+   
+    

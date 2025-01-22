@@ -2,8 +2,7 @@ from Fenster import *
 from Datei import *
 
 
-hauptfenster = Fenster.Create()
-Datei.Create(Datei.GetDesktopPfad(), "hallo.exe")
+hauptfenster = Fenster()
+Datei.Create(Datei.GetDesktopPfad(), hauptfenster.eintragsfeldText)
 
-
-Fenster.Run(hauptfenster)
+hauptfenster.mainloop()
